@@ -15,7 +15,7 @@ function init() {
 	//Inserting Dataset
 	d3.csv("https://raw.githubusercontent.com/Jjasonle/COS30045-UkraineMigration/main/CSV/UkraineEuropeComparison(1)(3).csv", function(data) {
 
-	  // List the different Stacks
+	  // List the different Stack types
 	  var stacks = data.columns.slice(1)
 
 	  // List the groups -> "Country" column will be displayed on x-axis
