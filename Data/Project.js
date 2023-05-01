@@ -15,8 +15,8 @@ function init() {
 	//Inserting Dataset
 	d3.csv("https://raw.githubusercontent.com/Jjasonle/COS30045-UkraineMigration/main/CSV/UkraineEuropeComparison(1)(3).csv", function(data) {
 
-	  // Listing of Subgroups
-	  var subgroups = data.columns.slice(1)
+	  // List the different Stacks
+	  var stacks = data.columns.slice(1)
 
 	  // List the groups -> "Country" column will be displayed on x-axis
 	  var groups = d3.map(data, function(d)	{
@@ -72,12 +72,12 @@ function init() {
 
 	  //Color palette; colour-blind friendly
 	  var color = d3.scaleOrdinal()
-		.domain(subgroups)
+		.domain(stacks)
 		.range(['#ffae49','#44a5c2'])
 
 	  //Data Stacking
 	  var stackedData = d3.stack()
-		.keys(subgroups)
+		.keys(stacks)
 		(data)
 		
 		//Drawing the Bars
