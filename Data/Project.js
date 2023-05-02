@@ -13,9 +13,9 @@ function init() {
 				.attr("transform", "translate(" + (padding + 30)/2 + "," + padding/2 + ")")
 
 	//Inserting Dataset
-	d3.csv("https://raw.githubusercontent.com/Jjasonle/COS30045-UkraineMigration/main/CSV/UkraineEuropeComparison(1)(3).csv", function(data) {
+	d3.csv("https://raw.githubusercontent.com/Jjasonle/UkraineMigration/main/CSV/UkraineEuropeComparison(1)(3).csv", function(data) {
 
-	  // List the different Stack types
+	  // Listing of Stack types
 	  var stacks = data.columns.slice(1)
 
 	  // List the groups -> "Country" column will be displayed on x-axis
@@ -31,7 +31,7 @@ function init() {
 				
 					
 	var yScale = d3.scaleLinear()	//Constructs linear scale
-				.domain([0, 1100000])
+				.domain([0, 300000])
 				.range([h, 0]);
 
 	  //Axis - X-axis
@@ -73,7 +73,7 @@ function init() {
 	  //Color palette; colour-blind friendly
 	  var color = d3.scaleOrdinal()
 		.domain(stacks)
-		.range(['#ffae49','#44a5c2'])
+		.range(['#ffae49','#44a5c2', '#cfcfcf'])
 
 	  //Data Stacking
 	  var stackedData = d3.stack()
