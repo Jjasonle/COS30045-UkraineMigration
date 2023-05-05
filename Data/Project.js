@@ -2,7 +2,7 @@ function init() {
 	//Dimensions
     var w = 600;
     var h = 300;
-	var padding  = 50;
+	var padding  = 100;
 	
 	var w2 = 300;
 	var h2 = 300;
@@ -26,7 +26,7 @@ function init() {
 				.attr("height", h2)
 				.attr("id","piechart");
 
-
+	//Stacked Bar Chart
 	//Inserting Dataset
 	d3.csv("https://raw.githubusercontent.com/Jjasonle/UkraineMigration/main/CSV/UkraineEuropeComparison(1)(3).csv", function(data) {
 
@@ -80,7 +80,7 @@ function init() {
 	//Y-axis Label
 	svg.append("text")
 		.attr("text-anchor", "middle")
-		.attr("transform", "translate(-10," + (h/2 - 160) + ")")	//"translate(-30," + h/2 + ")rotate(-90)"
+		.attr("transform", "translate(-55," + h/2 + ")rotate(-90)")	//.attr("transform", "translate(-10," + (h/2 - 160) + ")")	
 		.style("font-family", "Helvetica")
 		.style("font-size", 7)
 		.text("Migration in Europe");
