@@ -67,6 +67,35 @@ function init() {
 	  svg.append("g")
 		//.attr("transform", "translate(" + (padding) +", 0)")
 		.call(yAxis);
+
+	  var registerMouseovers = function () {	//Mouse over effect
+		svg.selectAll("rect")
+			.on("mouseover", function (d) {
+
+				var xPosition = parseFloat(d3.select(this).attr("x"));
+				var yPosition = parseFloat(d3.select(this).attr("y"));
+				var heightPosition = parseFloat(d3.select(this).attr("h"));
+	
+				d3.select(this)
+				.transition()
+				.style("opacity", 0.5);	//highlighting
+
+				svg.append("text")
+				.attr("id", "tooltip")
+				.attr("x", xPosition)
+				.attr("y", yPosition)
+				//will not display data. 
+				.text(function (d, i) { return d.data.label; });
+			})
+			.on("mouseout", function () {
+				d3.select(this)
+				.transition()
+			.duration(300)
+			  .style("opacity", 1);	//removes highlighting
+			d3.select("#tooltip")
+			  .remove();
+		});
+	};
 			
 	//X-axis Label
 	svg.append("text")
@@ -120,7 +149,7 @@ function init() {
 			return yScale(d[0]) - yScale(d[1]); 
 		})
 		.attr("width",xScale.bandwidth());
-		
+		registerMouseovers();	//Mouseover effect
 		
 		
 		
