@@ -46,7 +46,7 @@ function init() {
 				
 					
 	var yScale = d3.scaleLinear()	//Constructs linear scale
-				.domain([0, 300000])
+				.domain([0, 450000])
 				.range([h, 0]);
 
 	  //Axis - X-axis
@@ -111,13 +111,13 @@ function init() {
 		.attr("text-anchor", "middle")
 		.attr("transform", "translate(-55," + h/2 + ")rotate(-90)")	//.attr("transform", "translate(-10," + (h/2 - 160) + ")")	
 		.style("font-family", "Helvetica")
-		.style("font-size", 7)
+		.style("font-size", 12)
 		.text("Migration in Europe");
 
 	  //Color palette; colour-blind friendly
 	  var color = d3.scaleOrdinal()
 		.domain(stacks)
-		.range(['#ffae49','#44a5c2', '#cfcfcf'])
+		.range(['#ffae49','#44a5c2', '#1f449c', '#3d65a5', '#a8b6cc'])
 
 	  //Data Stacking
 	  var stackedData = d3.stack()
