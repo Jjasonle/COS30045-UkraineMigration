@@ -154,32 +154,25 @@ function init() {
 		
 		
 		console.log(data);
-		var dataset2016=[];
+		var dataset2017=[];
+		var dataset2018=[];
 		var dataset2019=[];
+		var dataset2020=[];
 		var dataset2021=[];
 		for (var i = 0; i<data.length;i++) {
-			dataset2016[i] = data[i]["2016"];
+			dataset2017[i] = data[i]["2017"];
+			dataset2018[i] = data[i]["2018"];
 			dataset2019[i] = data[i]["2019"];
+			dataset2020[i] = data[i]["2020"];
 			dataset2021[i] = data[i]["2021"];
 		}
-		console.log(dataset2016);
-		console.log(dataset2019);
-		console.log(dataset2021);
-		var arcs2016 = svg2.selectAll("g.arc")//appends the arcs onto the svg
-								.data(pie(dataset2016))
+		var arcs2017 = svg2.selectAll("g.arc")//appends the arcs onto the svg
+								.data(pie(dataset2017))
 								.enter()
 								.append("g")
 								.attr("class","arc")
 								.attr("transform","translate(" + outerRadius + "," + outerRadius + ")");
-		var arcs2021 = svg2.selectAll("g.arc")//appends the arcs onto the svg
-								.data(pie(dataset2021))
-								.enter()
-								.append("g")
-								.attr("class","arc")
-								.attr("transform","translate(" + outerRadius + "," + outerRadius + ")");
-		
-		console.log(arcs2021);
-		d3.select("#pie2016")
+		d3.select("#pie2017")
 			.on("click", function() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
@@ -187,29 +180,56 @@ function init() {
 								 .attr("width", w2)
 								 .attr("height", h2)
 								 .attr("id","piechart");
-				var arcs2016 = svg2.selectAll("g.arc")//appends the arcs onto the svg
-								.data(pie(dataset2016))
+				var arcs2017 = svg2.selectAll("g.arc")//appends the arcs onto the svg
+								.data(pie(dataset2017))
 								.enter()
 								.append("g")
 								.attr("class","arc")
 								.attr("transform","translate(" + outerRadius + "," + outerRadius + ")");
-				arcs2016.append("path")//writes an arc to the piechart
+				arcs2017.append("path")//writes an arc to the piechart
 						.attr("fill", function(d, i) {
 							return pieColor(i);
 						})
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						});
-				arcs2016.append("text")//adds text to each of the objects in the piechart
+				arcs2017.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
 						 return groups[i];
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
-				console.log(arcs2016);
 			});
-		
+		d3.select("#pie2018")
+			.on("click", function() {
+				d3.select("#piechart").remove();
+				var svg2 = d3.select("#chart2")
+								 .append("svg")
+								 .attr("width", w2)
+								 .attr("height", h2)
+								 .attr("id","piechart");
+				var arcs2018 = svg2.selectAll("g.arc")//appends the arcs onto the svg
+								.data(pie(dataset2018))
+								.enter()
+								.append("g")
+								.attr("class","arc")
+								.attr("transform","translate(" + outerRadius + "," + outerRadius + ")");
+				arcs2018.append("path")//writes an arc to the piechart
+						.attr("fill", function(d, i) {
+							return pieColor(i);
+						})
+						.attr("d", function(d, i) {
+							return arc(d, i);
+						});
+				arcs2018.append("text")//adds text to each of the objects in the piechart
+					 .text(function(d, i){
+						 return groups[i];
+					 })
+					 .attr("transform", function(d){
+						 return "translate(" + arc.centroid(d) + ")";
+					 });
+			});
 		
 		d3.select("#pie2019")
 			.on("click", function() {
@@ -242,7 +262,37 @@ function init() {
 				console.log(arcs2019);
 			});
 		
-		
+		d3.select("#pie2020")
+			.on("click", function() {
+				d3.select("#piechart").remove();
+				var svg2 = d3.select("#chart2")
+								 .append("svg")
+								 .attr("width", w2)
+								 .attr("height", h2)
+								 .attr("id","piechart");
+				var arcs2020 = svg2.selectAll("g.arc")//appends the arcs onto the svg
+								.data(pie(dataset2020))
+								.enter()
+								.append("g")
+								.attr("class","arc")
+								.attr("transform","translate(" + outerRadius + "," + outerRadius + ")");
+				arcs2020.append("path")//writes an arc to the piechart
+						.attr("fill", function(d, i) {
+							return pieColor(i);
+						})
+						.attr("d", function(d, i) {
+							return arc(d, i);
+						});
+				arcs2020.append("text")//adds text to each of the objects in the piechart
+					 .text(function(d, i){
+						 return groups[i];
+					 })
+					 .attr("transform", function(d){
+						 return "translate(" + arc.centroid(d) + ")";
+					 });
+				console.log(arcs2021);
+			});
+			
 		d3.select("#pie2021")
 			.on("click", function() {
 				d3.select("#piechart").remove();
@@ -275,15 +325,14 @@ function init() {
 			});
 		
 		
-		
-		arcs2016.append("path")//writes an arc to the piechart
+		arcs2017.append("path")//writes an arc to the piechart
 				.attr("fill", function(d, i) {
 					return pieColor(i);
 				})
 				.attr("d", function(d, i) {
 					return arc(d, i);
 				});
-		arcs2016.append("text")//adds text to each of the objects in the piechart
+		arcs2017.append("text")//adds text to each of the objects in the piechart
 			 .text(function(d, i){
 				 return groups[i];
 			 })
