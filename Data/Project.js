@@ -29,7 +29,7 @@ function init() {
 	var svg3 = d3.select("#legend")
 				.append("svg")
 				.attr("width", 700)
-				.attr("height", 700)
+				.attr("height", h - 500)
 
 	//Stacked Bar Chart
 	//Inserting Dataset
