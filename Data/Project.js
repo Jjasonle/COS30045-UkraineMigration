@@ -25,6 +25,11 @@ function init() {
 				.attr("width", w2)
 				.attr("height", h2)
 				.attr("id","piechart");
+	
+	var svg3 = d3.select("#legend")
+				.append("svg")
+				.attr("width", 700)
+				.attr("height", 700)
 
 	//Stacked Bar Chart
 	//Inserting Dataset
@@ -78,7 +83,8 @@ function init() {
 	
 				d3.select(this)
 				.transition()
-				.style("opacity", 0.5);	//highlighting
+				.duration(300)
+				.attr("opacity", 0.5)	//highlighting
 
 				svg.append("text")
 				.attr("id", "tooltip")
@@ -91,7 +97,7 @@ function init() {
 				d3.select(this)
 				.transition()
 			.duration(300)
-			  .style("opacity", 1);	//removes highlighting
+			  .attr("opacity", 1);	//removes highlighting
 			d3.select("#tooltip")
 			  .remove();
 		});
@@ -151,6 +157,17 @@ function init() {
 		.attr("width",xScale.bandwidth());
 		registerMouseovers();	//Mouseover effect
 		
+		//Legend .range([ "#ffae49", "#44a5c2", "#1f449c", "#3d65a5", "#a8b6cc"]);
+		svg.append("circle").attr("cx",620).attr("cy",70).attr("r", 6).style("fill", "#a8b6cc")
+		svg.append("circle").attr("cx",620).attr("cy",100).attr("r", 6).style("fill", "#3d65a5")
+		svg.append("circle").attr("cx",620).attr("cy",130).attr("r", 6).style("fill", "#1f449c")
+		svg.append("circle").attr("cx",620).attr("cy",160).attr("r", 6).style("fill", "#44a5c2")
+		svg.append("circle").attr("cx",620).attr("cy",190).attr("r", 6).style("fill", "#ffae49")
+		svg.append("text").attr("x", 640).attr("y", 70).text("2021").style("font-size", "15px").attr("alignment-baseline","middle")
+		svg.append("text").attr("x", 640).attr("y", 100).text("2020").style("font-size", "15px").attr("alignment-baseline","middle")
+		svg.append("text").attr("x", 640).attr("y", 130).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
+		svg.append("text").attr("x", 640).attr("y", 160).text("2018").style("font-size", "15px").attr("alignment-baseline","middle")	
+		svg.append("text").attr("x", 640).attr("y", 190).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
 		
 		
 		console.log(data);
