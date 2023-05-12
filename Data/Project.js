@@ -6,6 +6,7 @@ function init() {
 	
 	var w2 = 300;
 	var h2 = 300;
+	var LegendW = 120;
 	var outerRadius = w2/2;
 	var innerRadius = 0;
 	var arc = d3.arc()//creates the arcs
@@ -22,7 +23,7 @@ function init() {
 				.attr("transform", "translate(" + (padding + 30)/2 + "," + padding/2 + ")")
 	var svg2 = d3.select("#chart2")
 				.append("svg")
-				.attr("width", w2)
+				.attr("width", w2+LegendW)
 				.attr("height", h2)
 				.attr("id","piechart");
 	
@@ -172,16 +173,26 @@ function init() {
 		
 		console.log(data);
 		var dataset2017=[];
+		var dataset2017total = 0;
 		var dataset2018=[];
+		var dataset2018total = 0;
 		var dataset2019=[];
+		var dataset2019total = 0;
 		var dataset2020=[];
+		var dataset2020total = 0;
 		var dataset2021=[];
+		var dataset2021total = 0;
 		for (var i = 0; i<data.length;i++) {
 			dataset2017[i] = data[i]["2017"];
+			dataset2017total = dataset2017total + parseInt(data[i]["2017"]);
 			dataset2018[i] = data[i]["2018"];
+			dataset2018total = dataset2018total + parseInt(data[i]["2018"]);
 			dataset2019[i] = data[i]["2019"];
+			dataset2019total = dataset2019total + parseInt(data[i]["2019"]);
 			dataset2020[i] = data[i]["2020"];
+			dataset2020total = dataset2020total + parseInt(data[i]["2020"]);
 			dataset2021[i] = data[i]["2021"];
+			dataset2021total = dataset2021total + parseInt(data[i]["2021"]);
 		}
 		var arcs2017 = svg2.selectAll("g.arc")//appends the arcs onto the svg
 								.data(pie(dataset2017))
@@ -194,7 +205,7 @@ function init() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
-								 .attr("width", w2)
+								 .attr("width", w2+LegendW)
 								 .attr("height", h2)
 								 .attr("id","piechart");
 				var arcs2017 = svg2.selectAll("g.arc")//appends the arcs onto the svg
@@ -212,18 +223,32 @@ function init() {
 						});
 				arcs2017.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
-						 return groups[i];
+						 return "%"+ parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2);;
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
+				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 			});
 		d3.select("#pie2018")
 			.on("click", function() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
-								 .attr("width", w2)
+								 .attr("width", w2+LegendW)
 								 .attr("height", h2)
 								 .attr("id","piechart");
 				var arcs2018 = svg2.selectAll("g.arc")//appends the arcs onto the svg
@@ -241,11 +266,25 @@ function init() {
 						});
 				arcs2018.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
-						 return groups[i];
+						 return "%"+ parseFloat(parseInt(dataset2018[i])/dataset2018total*100).toFixed(2);;
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
+				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 			});
 		
 		d3.select("#pie2019")
@@ -253,7 +292,7 @@ function init() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
-								 .attr("width", w2)
+								 .attr("width", w2+LegendW)
 								 .attr("height", h2)
 								 .attr("id","piechart");
 				var arcs2019 = svg2.selectAll("g.arc")//appends the arcs onto the svg
@@ -271,12 +310,25 @@ function init() {
 						});
 				arcs2019.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
-						 return groups[i];
+						 return "%"+ parseFloat(parseInt(dataset2019[i])/dataset2019total*100).toFixed(2);;
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
-				console.log(arcs2019);
+				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 			});
 		
 		d3.select("#pie2020")
@@ -284,7 +336,7 @@ function init() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
-								 .attr("width", w2)
+								 .attr("width", w2+LegendW)
 								 .attr("height", h2)
 								 .attr("id","piechart");
 				var arcs2020 = svg2.selectAll("g.arc")//appends the arcs onto the svg
@@ -302,12 +354,25 @@ function init() {
 						});
 				arcs2020.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
-						 return groups[i];
+						 return "%"+ parseFloat(parseInt(dataset2020[i])/dataset2020total*100).toFixed(2);;
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
-				console.log(arcs2021);
+				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 			});
 			
 		d3.select("#pie2021")
@@ -315,7 +380,7 @@ function init() {
 				d3.select("#piechart").remove();
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
-								 .attr("width", w2)
+								 .attr("width", w2+LegendW)
 								 .attr("height", h2)
 								 .attr("id","piechart");
 				var arcs2021 = svg2.selectAll("g.arc")//appends the arcs onto the svg
@@ -333,12 +398,25 @@ function init() {
 						});
 				arcs2021.append("text")//adds text to each of the objects in the piechart
 					 .text(function(d, i){
-						 return groups[i];
+						 return "%"+ parseFloat(parseInt(dataset2021[i])/dataset2021total*100).toFixed(2);;
 					 })
 					 .attr("transform", function(d){
 						 return "translate(" + arc.centroid(d) + ")";
 					 });
-				console.log(arcs2021);
+				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 			});
 		
 		
@@ -351,11 +429,25 @@ function init() {
 				});
 		arcs2017.append("text")//adds text to each of the objects in the piechart
 			 .text(function(d, i){
-				 return groups[i];
+				 return "%"+ parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2);
 			 })
 			 .attr("transform", function(d){
 				 return "translate(" + arc.centroid(d) + ")";
 			 });
+		svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
+		svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
+		svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
+		svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
+		svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
+		svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
+		svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
+		svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
+		svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
 		})
 }	
 window.onload = init;
