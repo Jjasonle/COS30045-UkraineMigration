@@ -31,6 +31,18 @@ function init() {
 				.append("svg")
 				.attr("width", 700)
 				.attr("height", h - 500)
+	
+	var textbox = d3.select("#chart")
+				.append("div")
+				.style("opacity", 0)
+				.attr("class", "tooltip")
+				.style("border", "solid")
+				.style("background-color", "white")
+				.style("border-radius", "5px")
+				.style("border-width", "1px")
+				.style("padding", "5px")
+				.style("position", "absolute")
+
 
 	//Stacked Bar Chart
 	//Inserting Dataset
@@ -77,30 +89,33 @@ function init() {
 	  var registerMouseovers = function () {	//Mouse over effect
 		svg.selectAll("rect")
 			.on("mouseover", function (d) {
-
-				var xPosition = parseFloat(d3.select(this).attr("x"));
-				var yPosition = parseFloat(d3.select(this).attr("y"));
-				var heightPosition = parseFloat(d3.select(this).attr("h"));
-	
+				var stackName = d3.select(this.parentNode).datum().key;		//Retrieve the stack group name from csv
+				var stackValue = d.data[stackName];			//Retrieves the data value of the stacks
+				
+				textbox		//Display Datavalue
+				.html("Year: " + stackName + "<br>" + "Value: " + stackValue)
+				.style("opacity", 1)
+				
 				d3.select(this)
 				.transition()
 				.duration(300)
-				.attr("opacity", 0.5)	//highlighting
-
-				svg.append("text")
-				.attr("id", "tooltip")
-				.attr("x", xPosition)
-				.attr("y", yPosition)
-				//will not display data. 
-				.text(function (d, i) { return d.data.label; });
+				//.attr("opacity", 0.5)	//highlighting
+				.attr("stroke-width", 3)
+				.attr("stroke","#004d40")
 			})
-			.on("mouseout", function () {
+			.on("mousemove", function (d) {
+			    textbox
+				  .style("left", (d3.mouse(this)[0]+110) + "px") //Positioning of Data value textbox
+				  .style("top", (d3.mouse(this)[1]+90) + "px")
+			})
+			.on("mouseout", function (d) {
 				d3.select(this)
 				.transition()
-			.duration(300)
-			  .attr("opacity", 1);	//removes highlighting
-			d3.select("#tooltip")
-			  .remove();
+				.duration(300)
+				//.attr("opacity", 1);	//removes highlighting
+				.attr("stroke","none")
+				textbox
+				.style("opacity", 0)
 		});
 	};
 			
