@@ -35,6 +35,18 @@ function init() {
 				.append("svg")
 				.attr("width", 700)
 				.attr("height", h - 500)
+	
+	var textbox = d3.select("#chart")
+				.append("div")
+				.style("opacity", 0)
+				.attr("class", "tooltip")
+				.style("border", "solid")
+				.style("background-color", "white")
+				.style("border-radius", "5px")
+				.style("border-width", "1px")
+				.style("padding", "5px")
+				.style("position", "absolute")
+
 
 	//Stacked Bar Chart
 	//Inserting Dataset
@@ -65,9 +77,7 @@ function init() {
 		  
 	  svg.append("g")
 		.attr("transform", "translate(0," + h + ")")
-		//.attr("transform", "translate(" + padding + ", " + h +")")
 		.call(xAxis);
-		//.tickSizeOuter(0));
 
 	  //Axis - Y-axis
 	  var yAxis = d3.axisLeft()
@@ -75,36 +85,36 @@ function init() {
 		.ticks(10);
 		
 	  svg.append("g")
-		//.attr("transform", "translate(" + (padding) +", 0)")
 		.call(yAxis);
 
 	  var registerMouseovers = function () {	//Mouse over effect
 		svg.selectAll("rect")
 			.on("mouseover", function (d) {
-
-				var xPosition = parseFloat(d3.select(this).attr("x"));
-				var yPosition = parseFloat(d3.select(this).attr("y"));
-				var heightPosition = parseFloat(d3.select(this).attr("h"));
-	
+				var stackName = d3.select(this.parentNode).datum().key;		//Retrieve the stack group name from csv
+				var stackValue = d.data[stackName];			//Retrieves the data value of the stacks
+				
+				textbox		//Display Datavalue
+				.html("Year: " + stackName + "<br>" + "Value: " + stackValue)
+				.style("opacity", 1)
+				
 				d3.select(this)
 				.transition()
 				.duration(300)
-				.attr("opacity", 0.5)	//highlighting
-
-				svg.append("text")
-				.attr("id", "tooltip")
-				.attr("x", xPosition)
-				.attr("y", yPosition)
-				//will not display data. 
-				.text(function (d, i) { return d.data.label; });
+				.attr("stroke-width", 3)
+				.attr("stroke","#004d40")
 			})
-			.on("mouseout", function () {
+			.on("mousemove", function (d) {
+			    textbox
+				  .style("left", (d3.mouse(this)[0]+110) + "px") //Positioning of Data value textbox
+				  .style("top", (d3.mouse(this)[1]+90) + "px")
+			})
+			.on("mouseout", function (d) {
 				d3.select(this)
 				.transition()
-			.duration(300)
-			  .attr("opacity", 1);	//removes highlighting
-			d3.select("#tooltip")
-			  .remove();
+				.duration(300)
+				.attr("stroke","none")
+				textbox
+				.style("opacity", 0)
 		});
 	};
 			
@@ -172,7 +182,7 @@ function init() {
 		svg.append("text").attr("x", 640).attr("y", 100).text("2020").style("font-size", "15px").attr("alignment-baseline","middle")
 		svg.append("text").attr("x", 640).attr("y", 130).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
 		svg.append("text").attr("x", 640).attr("y", 160).text("2018").style("font-size", "15px").attr("alignment-baseline","middle")	
-		svg.append("text").attr("x", 640).attr("y", 190).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
+		svg.append("text").attr("x", 640).attr("y", 190).text("2017").style("font-size", "15px").attr("alignment-baseline","middle")
 		
 		
 		var dataset2017=[];
