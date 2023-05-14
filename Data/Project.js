@@ -183,7 +183,7 @@ function init() {
 		svg.append("text").attr("x", 640).attr("y", 100).text("2020").style("font-size", "15px").attr("alignment-baseline","middle")
 		svg.append("text").attr("x", 640).attr("y", 130).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
 		svg.append("text").attr("x", 640).attr("y", 160).text("2018").style("font-size", "15px").attr("alignment-baseline","middle")	
-		svg.append("text").attr("x", 640).attr("y", 190).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
+		svg.append("text").attr("x", 640).attr("y", 190).text("2017").style("font-size", "15px").attr("alignment-baseline","middle")
 		
 		
 		console.log(data);
