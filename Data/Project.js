@@ -73,9 +73,7 @@ function init() {
 		  
 	  svg.append("g")
 		.attr("transform", "translate(0," + h + ")")
-		//.attr("transform", "translate(" + padding + ", " + h +")")
 		.call(xAxis);
-		//.tickSizeOuter(0));
 
 	  //Axis - Y-axis
 	  var yAxis = d3.axisLeft()
@@ -83,7 +81,6 @@ function init() {
 		.ticks(10);
 		
 	  svg.append("g")
-		//.attr("transform", "translate(" + (padding) +", 0)")
 		.call(yAxis);
 
 	  var registerMouseovers = function () {	//Mouse over effect
@@ -99,7 +96,6 @@ function init() {
 				d3.select(this)
 				.transition()
 				.duration(300)
-				//.attr("opacity", 0.5)	//highlighting
 				.attr("stroke-width", 3)
 				.attr("stroke","#004d40")
 			})
@@ -112,7 +108,6 @@ function init() {
 				d3.select(this)
 				.transition()
 				.duration(300)
-				//.attr("opacity", 1);	//removes highlighting
 				.attr("stroke","none")
 				textbox
 				.style("opacity", 0)
