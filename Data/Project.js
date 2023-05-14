@@ -12,8 +12,12 @@ function init() {
 	var arc = d3.arc()//creates the arcs
 					.outerRadius(outerRadius)
 					.innerRadius(innerRadius);
+	var labelArc = d3.arc()
+					.innerRadius(w2 / 3)
+					.outerRadius(w2/2);
 	var pie = d3.pie();
-	var pieColor = d3.scaleOrdinal(d3.schemeCategory10);
+	var pieColor = d3.scaleOrdinal()
+		.range(['#F05039','#E57A77', '#EEBAB4', '#1F449C', '#3D65A5' ,'#7CA1CC' ,'#A8B6CC'])
 	// append the svg object to the body of the page
 	var svg = d3.select("#chart")
 				.append("svg")
@@ -171,7 +175,6 @@ function init() {
 		svg.append("text").attr("x", 640).attr("y", 190).text("2019").style("font-size", "15px").attr("alignment-baseline","middle")
 		
 		
-		console.log(data);
 		var dataset2017=[];
 		var dataset2017total = 0;
 		var dataset2018=[];
@@ -222,26 +225,19 @@ function init() {
 							return arc(d, i);
 						});
 				arcs2017.append("text")//adds text to each of the objects in the piechart
-					 .text(function(d, i){
-						 return "%"+ parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2);;
+					 .attr("transform", function (d) {
+						return "translate(" + labelArc.centroid(d) + ")";
 					 })
-					 .attr("transform", function(d){
-						 return "translate(" + arc.centroid(d) + ")";
+					 .attr("text-anchor", "middle")
+					 .text(function(d, i){
+						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
 					 });
-				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				var y =40;
+				for(var i = 0;i<dataset2017.length;i++){
+				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+				svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				y=y+30;
+				}
 			});
 		d3.select("#pie2018")
 			.on("click", function() {
@@ -265,26 +261,19 @@ function init() {
 							return arc(d, i);
 						});
 				arcs2018.append("text")//adds text to each of the objects in the piechart
-					 .text(function(d, i){
-						 return "%"+ parseFloat(parseInt(dataset2018[i])/dataset2018total*100).toFixed(2);;
+					 .attr("transform", function (d) {
+						return "translate(" + labelArc.centroid(d) + ")";
 					 })
-					 .attr("transform", function(d){
-						 return "translate(" + arc.centroid(d) + ")";
+					 .attr("text-anchor", "middle")
+					 .text(function(d, i){
+						 return parseFloat(parseInt(dataset2018[i])/dataset2018total*100).toFixed(2)+"%";
 					 });
-				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				var y =40;
+				for(var i = 0;i<dataset2018.length;i++){
+				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+				svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				y=y+30;
+				}
 			});
 		
 		d3.select("#pie2019")
@@ -309,26 +298,19 @@ function init() {
 							return arc(d, i);
 						});
 				arcs2019.append("text")//adds text to each of the objects in the piechart
-					 .text(function(d, i){
-						 return "%"+ parseFloat(parseInt(dataset2019[i])/dataset2019total*100).toFixed(2);;
+					 .attr("transform", function (d) {
+						return "translate(" + labelArc.centroid(d) + ")";
 					 })
-					 .attr("transform", function(d){
-						 return "translate(" + arc.centroid(d) + ")";
+					 .attr("text-anchor", "middle")
+					 .text(function(d, i){
+						 return parseFloat(parseInt(dataset2019[i])/dataset2019total*100).toFixed(2)+"%";
 					 });
-				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				var y =40;
+				for(var i = 0;i<dataset2019.length;i++){
+				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+				svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				y=y+30;
+				}
 			});
 		
 		d3.select("#pie2020")
@@ -353,26 +335,19 @@ function init() {
 							return arc(d, i);
 						});
 				arcs2020.append("text")//adds text to each of the objects in the piechart
-					 .text(function(d, i){
-						 return "%"+ parseFloat(parseInt(dataset2020[i])/dataset2020total*100).toFixed(2);;
+					 .attr("transform", function (d) {
+						return "translate(" + labelArc.centroid(d) + ")";
 					 })
-					 .attr("transform", function(d){
-						 return "translate(" + arc.centroid(d) + ")";
+					 .attr("text-anchor", "middle")
+					 .text(function(d, i){
+						 return parseFloat(parseInt(dataset2020[i])/dataset2020total*100).toFixed(2)+"%";
 					 });
-				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				var y =40;
+				for(var i = 0;i<dataset2020.length;i++){
+				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+				svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				y=y+30;
+				}
 			});
 			
 		d3.select("#pie2021")
@@ -397,26 +372,19 @@ function init() {
 							return arc(d, i);
 						});
 				arcs2021.append("text")//adds text to each of the objects in the piechart
+					 .attr("transform", function (d) {
+						return "translate(" + labelArc.centroid(d) + ")";
+					 })
+					 .attr("text-anchor", "middle")
 					 .text(function(d, i){
 						 return "%"+ parseFloat(parseInt(dataset2021[i])/dataset2021total*100).toFixed(2);;
-					 })
-					 .attr("transform", function(d){
-						 return "translate(" + arc.centroid(d) + ")";
 					 });
-				svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-				svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-				svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-				svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-				svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-				svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-				svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-				svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-				svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-				svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				var y =40;
+				for(var i = 0;i<dataset2021.length;i++){
+				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+				svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+				y=y+30;
+				}
 			});
 		
 		
@@ -427,27 +395,20 @@ function init() {
 				.attr("d", function(d, i) {
 					return arc(d, i);
 				});
-		arcs2017.append("text")//adds text to each of the objects in the piechart
-			 .text(function(d, i){
-				 return "%"+ parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2);
-			 })
-			 .attr("transform", function(d){
-				 return "translate(" + arc.centroid(d) + ")";
-			 });
-		svg2.append("circle").attr("cx",320).attr("cy",40).attr("r", 6).style("fill", function(){return pieColor(0)})
-		svg2.append("circle").attr("cx",320).attr("cy",70).attr("r", 6).style("fill", function(){return pieColor(1)})
-		svg2.append("circle").attr("cx",320).attr("cy",100).attr("r", 6).style("fill", function(){return pieColor(2)})
-		svg2.append("circle").attr("cx",320).attr("cy",130).attr("r", 6).style("fill", function(){return pieColor(3)})
-		svg2.append("circle").attr("cx",320).attr("cy",160).attr("r", 6).style("fill", function(){return pieColor(4)})
-		svg2.append("circle").attr("cx",320).attr("cy",190).attr("r", 6).style("fill", function(){return pieColor(5)})
-		svg2.append("circle").attr("cx",320).attr("cy",220).attr("r", 6).style("fill", function(){return pieColor(6)})
-		svg2.append("text").attr("x", 340).attr("y", 40).text(function(){return groups[0]}).style("font-size", "15px").attr("alignment-baseline","middle")
-		svg2.append("text").attr("x", 340).attr("y", 70).text(function(){return groups[1]}).style("font-size", "15px").attr("alignment-baseline","middle")
-		svg2.append("text").attr("x", 340).attr("y", 100).text(function(){return groups[2]}).style("font-size", "15px").attr("alignment-baseline","middle")
-		svg2.append("text").attr("x", 340).attr("y", 130).text(function(){return groups[3]}).style("font-size", "15px").attr("alignment-baseline","middle")
-		svg2.append("text").attr("x", 340).attr("y", 160).text(function(){return groups[4]}).style("font-size", "15px").attr("alignment-baseline","middle")	
-		svg2.append("text").attr("x", 340).attr("y", 190).text(function(){return groups[5]}).style("font-size", "15px").attr("alignment-baseline","middle")
-		svg2.append("text").attr("x", 340).attr("y", 220).text(function(){return groups[6]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		arcs2017.append("text")
+				.attr("transform", function (d) {
+				return "translate(" + labelArc.centroid(d) + ")";
+					 })
+				.attr("text-anchor", "middle")
+				.text(function(d, i){
+						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
+					 });
+		var y =40;
+		for(var i = 0;i<dataset2017.length;i++){
+		svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
+		svg2.append("text").attr("x", 340).attr("y", y).text(function(){return groups[i]}).style("font-size", "15px").attr("alignment-baseline","middle")
+		y=y+30;
+		}
 		})
 }	
 window.onload = init;
