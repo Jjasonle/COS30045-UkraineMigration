@@ -46,6 +46,17 @@ function init() {
 				.style("border-width", "1px")
 				.style("padding", "5px")
 				.style("position", "absolute")
+	
+	var textbox2 = d3.select("#chart2")
+				.append("div")
+				.style("opacity", 0)
+				.attr("class", "tooltip")
+				.style("border", "solid")
+				.style("background-color", "white")
+				.style("border-radius", "5px")
+				.style("border-width", "1px")
+				.style("padding", "5px")
+				.style("position", "absolute")
 
 
 	//Stacked Bar Chart
@@ -404,6 +415,29 @@ function init() {
 				})
 				.attr("d", function(d, i) {
 					return arc(d, i);
+				}).on("mouseover", function (d, i) {
+				textbox2		//Display Datavalue
+				.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2017[i])
+				.style("opacity", 1)
+				
+				d3.select(this)
+				.transition()
+				.duration(300)
+				.attr("stroke-width", 3)
+				.attr("stroke","#004d40")
+				})
+				.on("mousemove", function (d) {
+					 textbox2
+					  .style("left", (d3.mouse(this)[0]+110) + "px") //Positioning of Data value textbox
+					  .style("top", (d3.mouse(this)[1]+90) + "px")
+				})
+				.on("mouseout", function (d) {
+					d3.select(this)
+					.transition()
+					.duration(300)
+					.attr("stroke","none")
+					textbox2
+					.style("opacity", 0)
 				});
 		arcs2017.append("text")
 				.attr("transform", function (d) {
