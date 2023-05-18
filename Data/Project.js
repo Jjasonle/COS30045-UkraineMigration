@@ -195,7 +195,8 @@ function init() {
 		svg.append("text").attr("x", 640).attr("y", 160).text("2018").style("font-size", "15px").attr("alignment-baseline","middle")	
 		svg.append("text").attr("x", 640).attr("y", 190).text("2017").style("font-size", "15px").attr("alignment-baseline","middle")
 		
-		
+		var tPosX=185;
+		var tPosY=675;
 		var dataset2017=[];
 		var dataset2017total = 0;
 		var dataset2018=[];
@@ -227,6 +228,11 @@ function init() {
 		d3.select("#pie2017")
 			.on("click", function() {
 				d3.select("#piechart").remove();
+				d3.select("#pie2017").attr("disabled","true");
+				d3.select("#pie2018").attr("disabled",null);
+				d3.select("#pie2019").attr("disabled",null);
+				d3.select("#pie2020").attr("disabled",null);
+				d3.select("#pie2021").attr("disabled",null);
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
 								 .attr("width", w2+LegendW)
@@ -257,8 +263,8 @@ function init() {
 						})
 						.on("mousemove", function (d) {
 							 textbox2
-							  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-							  .style("top", (d3.mouse(this)[1]+650) + "px")
+							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
 						.on("mouseout", function (d) {
 							d3.select(this)
@@ -276,6 +282,7 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
 					 });
+				svg2.append("text").attr("x", 10).attr("y", 10).text("2017 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2017.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -286,6 +293,11 @@ function init() {
 		d3.select("#pie2018")
 			.on("click", function() {
 				d3.select("#piechart").remove();
+				d3.select("#pie2017").attr("disabled",null);
+				d3.select("#pie2018").attr("disabled","true");
+				d3.select("#pie2019").attr("disabled",null);
+				d3.select("#pie2020").attr("disabled",null);
+				d3.select("#pie2021").attr("disabled",null);
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
 								 .attr("width", w2+LegendW)
@@ -316,8 +328,8 @@ function init() {
 						})
 						.on("mousemove", function (d) {
 							 textbox2
-							  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-							  .style("top", (d3.mouse(this)[1]+650) + "px")
+							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
 						.on("mouseout", function (d) {
 							d3.select(this)
@@ -335,6 +347,7 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2018[i])/dataset2018total*100).toFixed(2)+"%";
 					 });
+				svg2.append("text").attr("x", 10).attr("y", 10).text("2018 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2018.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -346,6 +359,11 @@ function init() {
 		d3.select("#pie2019")
 			.on("click", function() {
 				d3.select("#piechart").remove();
+				d3.select("#pie2017").attr("disabled",null);
+				d3.select("#pie2018").attr("disabled",null);
+				d3.select("#pie2019").attr("disabled","true");
+				d3.select("#pie2020").attr("disabled",null);
+				d3.select("#pie2021").attr("disabled",null);
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
 								 .attr("width", w2+LegendW)
@@ -376,8 +394,8 @@ function init() {
 						})
 						.on("mousemove", function (d) {
 							 textbox2
-							  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-							  .style("top", (d3.mouse(this)[1]+650) + "px")
+							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
 						.on("mouseout", function (d) {
 							d3.select(this)
@@ -395,6 +413,7 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2019[i])/dataset2019total*100).toFixed(2)+"%";
 					 });
+				svg2.append("text").attr("x", 10).attr("y", 10).text("2019 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2019.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -406,6 +425,11 @@ function init() {
 		d3.select("#pie2020")
 			.on("click", function() {
 				d3.select("#piechart").remove();
+				d3.select("#pie2017").attr("disabled",null);
+				d3.select("#pie2018").attr("disabled",null);
+				d3.select("#pie2019").attr("disabled",null);
+				d3.select("#pie2020").attr("disabled","true");
+				d3.select("#pie2021").attr("disabled",null);
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
 								 .attr("width", w2+LegendW)
@@ -436,8 +460,8 @@ function init() {
 						})
 						.on("mousemove", function (d) {
 							 textbox2
-							  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-							  .style("top", (d3.mouse(this)[1]+650) + "px")
+							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
 						.on("mouseout", function (d) {
 							d3.select(this)
@@ -455,6 +479,7 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2020[i])/dataset2020total*100).toFixed(2)+"%";
 					 });
+				svg2.append("text").attr("x", 10).attr("y", 10).text("2020 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2020.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -466,6 +491,11 @@ function init() {
 		d3.select("#pie2021")
 			.on("click", function() {
 				d3.select("#piechart").remove();
+				d3.select("#pie2017").attr("disabled",null);
+				d3.select("#pie2018").attr("disabled",null);
+				d3.select("#pie2019").attr("disabled",null);
+				d3.select("#pie2020").attr("disabled",null);
+				d3.select("#pie2021").attr("disabled","true");
 				var svg2 = d3.select("#chart2")
 								 .append("svg")
 								 .attr("width", w2+LegendW)
@@ -496,8 +526,8 @@ function init() {
 						})
 						.on("mousemove", function (d) {
 							 textbox2
-							  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-							  .style("top", (d3.mouse(this)[1]+650) + "px")
+							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
 						.on("mouseout", function (d) {
 							d3.select(this)
@@ -515,6 +545,7 @@ function init() {
 					 .text(function(d, i){
 						 return "%"+ parseFloat(parseInt(dataset2021[i])/dataset2021total*100).toFixed(2);;
 					 });
+				svg2.append("text").attr("x", 10).attr("y", 10).text("2021 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2021.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -523,7 +554,7 @@ function init() {
 				}
 			});
 		
-		
+		d3.select("#pie2017").attr("disabled","true");
 		arcs2017.append("path")//writes an arc to the piechart
 				.attr("fill", function(d, i) {
 					return pieColor(i);
@@ -543,8 +574,8 @@ function init() {
 				})
 				.on("mousemove", function (d) {
 					 textbox2
-					  .style("left", (d3.mouse(this)[0]+210) + "px") //Positioning of Data value textbox
-					  .style("top", (d3.mouse(this)[1]+650) + "px")
+					  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
+					  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 				})
 				.on("mouseout", function (d) {
 					d3.select(this)
@@ -562,6 +593,7 @@ function init() {
 				.text(function(d, i){
 						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
 					 });
+		svg2.append("text").attr("x", 10).attr("y", 10).text("2017 data").style("font-size", "15px").attr("alignment-baseline","middle")
 		var y =40;
 		for(var i = 0;i<dataset2017.length;i++){
 		svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
