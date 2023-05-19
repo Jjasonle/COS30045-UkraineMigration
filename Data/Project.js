@@ -47,16 +47,6 @@ function init() {
 				.style("padding", "5px")
 				.style("position", "absolute")
 	
-	var textbox2 = d3.select("#chart2")
-				.append("div")
-				.style("opacity", 0)
-				.attr("class", "tooltip")
-				.style("border", "solid")
-				.style("background-color", "white")
-				.style("border-radius", "5px")
-				.style("border-width", "1px")
-				.style("padding", "5px")
-				.style("position", "absolute")
 
 
 	//Stacked Bar Chart
@@ -251,7 +241,7 @@ function init() {
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
-						textbox2		//Display Datavalue
+						textbox		//Display Datavalue
 						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2017[i])
 						.style("opacity", 1)
 						
@@ -262,7 +252,7 @@ function init() {
 						.attr("stroke","#004d40")
 						})
 						.on("mousemove", function (d) {
-							 textbox2
+							 textbox
 							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
@@ -271,7 +261,7 @@ function init() {
 							.transition()
 							.duration(300)
 							.attr("stroke","none")
-							textbox2
+							textbox
 							.style("opacity", 0)
 						});
 				arcs2017.append("text")//adds text to each of the objects in the piechart
@@ -316,7 +306,7 @@ function init() {
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
-						textbox2		//Display Datavalue
+						textbox	//Display Datavalue
 						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2018[i])
 						.style("opacity", 1)
 						
@@ -327,7 +317,7 @@ function init() {
 						.attr("stroke","#004d40")
 						})
 						.on("mousemove", function (d) {
-							 textbox2
+							 textbox
 							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
@@ -336,7 +326,7 @@ function init() {
 							.transition()
 							.duration(300)
 							.attr("stroke","none")
-							textbox2
+							textbox
 							.style("opacity", 0)
 						});
 				arcs2018.append("text")//adds text to each of the objects in the piechart
@@ -382,7 +372,7 @@ function init() {
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
-						textbox2		//Display Datavalue
+						textbox		//Display Datavalue
 						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2019[i])
 						.style("opacity", 1)
 						
@@ -393,7 +383,7 @@ function init() {
 						.attr("stroke","#004d40")
 						})
 						.on("mousemove", function (d) {
-							 textbox2
+							 textbox
 							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
@@ -402,7 +392,7 @@ function init() {
 							.transition()
 							.duration(300)
 							.attr("stroke","none")
-							textbox2
+							textbox
 							.style("opacity", 0)
 						});
 				arcs2019.append("text")//adds text to each of the objects in the piechart
@@ -448,7 +438,7 @@ function init() {
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
-						textbox2		//Display Datavalue
+						textbox	//Display Datavalue
 						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2020[i])
 						.style("opacity", 1)
 						
@@ -459,7 +449,7 @@ function init() {
 						.attr("stroke","#004d40")
 						})
 						.on("mousemove", function (d) {
-							 textbox2
+							 textbox
 							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
@@ -468,7 +458,7 @@ function init() {
 							.transition()
 							.duration(300)
 							.attr("stroke","none")
-							textbox2
+							textbox
 							.style("opacity", 0)
 						});
 				arcs2020.append("text")//adds text to each of the objects in the piechart
@@ -514,7 +504,7 @@ function init() {
 						.attr("d", function(d, i) {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
-						textbox2		//Display Datavalue
+						textbox		//Display Datavalue
 						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2021[i])
 						.style("opacity", 1)
 						
@@ -525,7 +515,7 @@ function init() {
 						.attr("stroke","#004d40")
 						})
 						.on("mousemove", function (d) {
-							 textbox2
+							 textbox
 							  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 							  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 						})
@@ -534,7 +524,7 @@ function init() {
 							.transition()
 							.duration(300)
 							.attr("stroke","none")
-							textbox2
+							textbox
 							.style("opacity", 0)
 						});
 				arcs2021.append("text")//adds text to each of the objects in the piechart
@@ -562,7 +552,7 @@ function init() {
 				.attr("d", function(d, i) {
 					return arc(d, i);
 				}).on("mouseover", function (d, i) {
-				textbox2		//Display Datavalue
+				textbox	//Display Datavalue
 				.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2017[i])
 				.style("opacity", 1)
 				
@@ -573,7 +563,7 @@ function init() {
 				.attr("stroke","#004d40")
 				})
 				.on("mousemove", function (d) {
-					 textbox2
+					 textbox
 					  .style("left", (d3.mouse(this)[0]+tPosX) + "px") //Positioning of Data value textbox
 					  .style("top", (d3.mouse(this)[1]+tPosY) + "px")
 				})
@@ -582,7 +572,7 @@ function init() {
 					.transition()
 					.duration(300)
 					.attr("stroke","none")
-					textbox2
+					textbox
 					.style("opacity", 0)
 				});
 		arcs2017.append("text")
