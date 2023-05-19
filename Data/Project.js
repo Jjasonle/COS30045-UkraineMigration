@@ -82,8 +82,14 @@ function init() {
 
 	  //Axis - Y-axis
 	  var yAxis = d3.axisLeft()
-		.scale(yScale)
-		.ticks(10);
+	  	.scale(yScale)
+	  	.ticks(10)
+	  	.tickFormat(function (d) {	//Formats scale to be divided by 1,000
+		  if ((d / 1000) >= 1) {
+			  d = d / 1000;
+		  }
+		  return d;
+	  });
 		
 	  svg.append("g")
 		.call(yAxis);
@@ -93,9 +99,10 @@ function init() {
 			.on("mouseover", function (d) {
 				var stackName = d3.select(this.parentNode).datum().key;		//Retrieve the stack group name from csv
 				var stackValue = d.data[stackName];			//Retrieves the data value of the stacks
+				var formatValue = d3.format(",")(stackValue);	//Formats values so there is a comma
 				
 				textbox		//Display Datavalue
-				.html("Year: " + stackName + "<br>" + "Value: " + stackValue)
+				.html("Year: " + stackName + "<br>" + "Value: " + formatValue)
 				.style("opacity", 1)
 				
 				d3.select(this)
@@ -135,6 +142,13 @@ function init() {
 		.style("font-family", "Helvetica")
 		.style("font-size", 12)
 		.text("Migration in Europe");
+		
+	svg.append("text")
+		.attr("text-anchor", "middle")
+		.attr("transform", "translate(-40," + h/2 + ")rotate(-90)")	//.attr("transform", "translate(-10," + (h/2 - 160) + ")")	
+		.style("font-family", "Helvetica")
+		.style("font-size", 12)
+		.text("(thousands)");
 
 	  //Color palette; colour-blind friendly
 	  var color = d3.scaleOrdinal()
