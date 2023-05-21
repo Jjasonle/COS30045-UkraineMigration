@@ -256,7 +256,7 @@ function init() {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
 						textbox		//Display Datavalue
-						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2017[i])
+						.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2017[i]))
 						.style("opacity", 1)
 						
 						d3.select(this)
@@ -321,7 +321,7 @@ function init() {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
 						textbox	//Display Datavalue
-						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2018[i])
+						.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2018[i]))
 						.style("opacity", 1)
 						
 						d3.select(this)
@@ -387,7 +387,7 @@ function init() {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
 						textbox		//Display Datavalue
-						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2019[i])
+						.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2019[i]))
 						.style("opacity", 1)
 						
 						d3.select(this)
@@ -453,7 +453,7 @@ function init() {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
 						textbox	//Display Datavalue
-						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2020[i])
+						.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2020[i]))
 						.style("opacity", 1)
 						
 						d3.select(this)
@@ -519,7 +519,7 @@ function init() {
 							return arc(d, i);
 						}).on("mouseover", function (d, i) {
 						textbox		//Display Datavalue
-						.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2021[i])
+						.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2021[i]))
 						.style("opacity", 1)
 						
 						d3.select(this)
@@ -567,7 +567,7 @@ function init() {
 					return arc(d, i);
 				}).on("mouseover", function (d, i) {
 				textbox	//Display Datavalue
-				.html("Country: " + groups[i] + "<br>" + "Value: " + dataset2017[i])
+				.html("Country: " + groups[i] + "<br>" + "Value: " + d3.format(",")(dataset2017[i]))
 				.style("opacity", 1)
 				
 				d3.select(this)
