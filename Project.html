@@ -12,21 +12,52 @@
 	<script src="Data/Project.js"></script>
 </head>
 <body>
+	<!-- About the Project -->
+	<div class="intro">
 	<h1>Ukraine Migration in Europe</h1>
-	<div id="chart"></div>
-    <div id="legend"></div>
-
-	<br>
-	<button id="pie2017">2017</button>
-	<button id="pie2018">2018</button>
-	<button id="pie2019">2019</button>
-	<button id="pie2020">2020</button>
-	<button id="pie2021">2021</button>
+	<div id="info">
+	<p>The following visualisations are a part of the COS30045 - Data Visualisation major assessment. 
+	The purpose of the visualisations is to demonstrate the effects of conflict on migration of Ukrainian refugees
+	in Europe from the years 2017 to 2021. All the visualisations are coded in Javascript and D3. By observing the
+	visualisations, you'll be able to compare and contrast the patterns of migration across different European
+	countries. The data for these visualisations can be found at the 
+	<a href="https://ec.europa.eu/eurostat/databrowser/view/MIGR_RESVALID__custom_6035337/default/table?lang=en">eurostat Data Browser</a>.</p>
+	</div>
+	<!-- Stacked Bar Chart -->
+	<div class="sbarchart">
+		<div class="barchart">
+			<div id="chart"></div>
+			<div id="legend"></div>
+		</div>
+		<div class="sbarchartinfo">
+			<p>In this chart there is...</p>
+		</div>
+	</div>
 	
 	<br>
-	<div id="chart2"></div>
+	<!-- Pie Chart -->
+	<div class="piechart">
+		<div class="piechartvis">
+		<div id="chart2"></div>
+		<br>
+			<button id="pie2017">2017</button>
+			<button id="pie2018">2018</button>
+			<button id="pie2019">2019</button>
+			<button id="pie2020">2020</button>
+			<button id="pie2021">2021</button>
+		</div>
+		<div class="piechartinfo">
+			<p>In this chart there is... </p>
+		</div>
+	</div>
+
+
+
+
+	<!-- Footer -->
 	<br>
-	<footer style="color:grey">COS30045 Data Visualisation<br>
-	Jason Le And Simon Holt	</footer>
+	<footer style="color:grey" class="footer">
+	<div class="footerinfo">COS30045 Data Visualisation<br>Jason Le And Simon Holt</div>
+	</footer>
 </body>
 </html>
