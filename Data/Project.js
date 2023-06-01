@@ -21,7 +21,7 @@ function init() {
 	// append the svg object to the body of the page
 	var svg = d3.select("#chart")
 				.append("svg")
-				.attr("width", w + h + 40)	
+				.attr("width", w + padding + LegendW)	
 				.attr("height", h + padding + 20)
 				.append("g")
 				.attr("transform", "translate(" + (padding + 30)/2 + "," + padding/2 + ")")
@@ -286,7 +286,6 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
 					 });
-				svg2.append("text").attr("x", 10).attr("y", 10).text("2017 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2017.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -351,7 +350,6 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2018[i])/dataset2018total*100).toFixed(2)+"%";
 					 });
-				svg2.append("text").attr("x", 10).attr("y", 10).text("2018 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2018.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -417,7 +415,6 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2019[i])/dataset2019total*100).toFixed(2)+"%";
 					 });
-				svg2.append("text").attr("x", 10).attr("y", 10).text("2019 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2019.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -483,7 +480,6 @@ function init() {
 					 .text(function(d, i){
 						 return parseFloat(parseInt(dataset2020[i])/dataset2020total*100).toFixed(2)+"%";
 					 });
-				svg2.append("text").attr("x", 10).attr("y", 10).text("2020 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2020.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -549,7 +545,6 @@ function init() {
 					 .text(function(d, i){
 						 return "%"+ parseFloat(parseInt(dataset2021[i])/dataset2021total*100).toFixed(2);;
 					 });
-				svg2.append("text").attr("x", 10).attr("y", 10).text("2021 data").style("font-size", "15px").attr("alignment-baseline","middle")
 				var y =40;
 				for(var i = 0;i<dataset2021.length;i++){
 				svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
@@ -597,7 +592,6 @@ function init() {
 				.text(function(d, i){
 						 return parseFloat(parseInt(dataset2017[i])/dataset2017total*100).toFixed(2)+"%";
 					 });
-		svg2.append("text").attr("x", 10).attr("y", 10).text("2017 data").style("font-size", "15px").attr("alignment-baseline","middle")
 		var y =40;
 		for(var i = 0;i<dataset2017.length;i++){
 		svg2.append("circle").attr("cx",320).attr("cy",y).attr("r", 6).style("fill", function(){return pieColor(i)})
